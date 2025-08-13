@@ -1,6 +1,6 @@
 Link to project: 
 
-[https://iotemplate.netlify.app/]
+[https://iotemplate.netlify.app/](https://iotemplate.netlify.app/)
 
 
 
