@@ -138,7 +138,15 @@ export function BarChart({
     </div>
   );
 }
-function CustomTick({ x, y, payload }: any) {
+function CustomTick({
+  x,
+  y,
+  payload,
+}: {
+  x: number;
+  y: number;
+  payload: { value: string };
+}) {
   const maxLength = 12;
   const fullText = payload.value;
   const truncated =

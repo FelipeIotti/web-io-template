@@ -1,13 +1,13 @@
 export class AppError {
   status: number;
   message: string;
-  errors: any;
+  errors: Record<string, string> | string;
   error: string;
 
   constructor(error: {
     status: number;
     message?: string | null;
-    errors?: any | null;
+    errors?: Record<string, string> | string | null;
     error?: string | null;
   }) {
     this.status = error?.status ?? 503;
