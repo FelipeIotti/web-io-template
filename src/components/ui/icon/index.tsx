@@ -1,0 +1,37 @@
+"use client";
+
+import * as Icons from "@/assets/icons";
+
+export type IconNameType = keyof typeof Icons;
+
+interface IconProps {
+  name: IconNameType;
+  size?: number;
+  className?: string;
+  strokeWidth?: number;
+  onClick?: () => void;
+}
+
+export function Icon({
+  name,
+  className,
+  size = 24,
+  strokeWidth = 4,
+  onClick,
+}: IconProps) {
+  const SelectedIcon = Icons[name];
+
+  if (!SelectedIcon) {
+    return null;
+  }
+
+  return (
+    <SelectedIcon
+      className={className}
+      height={size}
+      width={size}
+      strokeWidth={strokeWidth}
+      onClick={onClick}
+    />
+  );
+}

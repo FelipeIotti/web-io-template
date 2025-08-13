@@ -1,26 +1,126 @@
 @import "tailwindcss";
+@plugin "tailwind-scrollbar";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: rgba(242, 242, 242);
+  --color-foreground: rgba(255, 255, 255);
+  --color-border: rgba(224, 224, 224);
+  --color-primary: rgba(255, 105, 0);
+  --color-text: rgba(0, 0, 0);
+  --color-black: rgba(0, 0, 0);
+  --color-white: rgba(255, 255, 255);
+  --color-input: rgba(255, 255, 255);
+  --color-input-border: rgba(224, 224, 224);
+
+  --chart-1: rgba(255, 105, 0);
+  --chart-2: rgba(235, 105, 0, 80);
+  --chart-3: rgba(255, 105, 0, 60);
+  --chart-4: rgba(255, 105, 0, 40);
+  --chart-5: rgba(255, 105, 0, 20);
+}
+
+.dark {
+  --color-background: rgba(23, 23, 23);
+  --color-foreground: rgba(0, 0, 0);
+  --color-border: rgba(38, 38, 38);
+  --color-primary: rgba(255, 105, 0);
+  --color-text: rgba(255, 255, 255);
+  --color-black: rgba(255, 255, 255);
+  --color-white: rgba(0, 0, 0);
+  --color-input: rgba(23, 23, 23);
+  --color-input-border: rgba(23, 23, 23);
+
+  --chart-1: rgba(255, 105, 0);
+  --chart-2: rgba(235, 105, 0, 80);
+  --chart-3: rgba(255, 105, 0, 60);
+  --chart-4: rgba(255, 105, 0, 40);
+  --chart-5: rgba(255, 105, 0, 20);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-primary: var(--color-primary);
+  --color-text: var(--color-text);
+  --color-border: var(--color-border);
+  --color-black: var(--color-black);
+  --color-white: var(--color-white);
+  --color-input: var(--color-input);
+  --color-input-border: var(--color-input-border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --radius: 0.5rem;
+}
+
+@utility border {
+  border-color: var(--color-border);
+}
+
+@utility input {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  background-color: var(--color-input);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-input-border);
+  padding-inline: 8px;
+  padding-block: 6px;
+  &:focus {
+    outline: none;
+    border-color: var(--color-black);
+  }
+  &:hover {
+    border-color: var(--color-black);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  p {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+  }
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+  input {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    background-color: var(--color-input);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-input-border);
+    padding-inline: 2rem;
+    padding-block: 1.5rem;
+  }
+  input:focus {
+    outline: none;
+    border-color: var(--color-black);
+  }
+  input:hover {
+    border-color: var(--color-black);
+  }
+  textarea {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    background-color: var(--color-input);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-input-border);
+  }
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-black);
+  }
+  textarea:hover {
+    border-color: var(--color-black);
+  }
 }
