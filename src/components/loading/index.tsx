@@ -3,7 +3,8 @@ interface LoadingProps {
 }
 
 export function Loading({ className }: LoadingProps) {
-  const baseClass = "animate-spin border border-t-transparent rounded-full";
+  const baseClass =
+    "animate-spin border border-3 border-primary border-t-transparent rounded-full";
 
   return <div className={`${baseClass} ${className}`} />;
 }

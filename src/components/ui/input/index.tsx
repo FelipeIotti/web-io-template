@@ -10,7 +10,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: string;
   placeholder?: string;
   noThemed?: boolean;
-  errors?: Record<string, string> | null;
+  errors?: Record<string, string[]> | null;
   mask?: string;
   onChange?: (
     value: ChangeEvent<HTMLInputElement> | string
@@ -36,7 +36,7 @@ export function Input({
     (name ? errors?.[name.split(".").pop() as string]?.[0] : undefined);
 
   const baseClass = `
-  ${invalid ? "border-red-500" : ""} 
+  ${invalid ? "border-red-500 dark:border-red-400" : ""} 
   ${readOnly ? "opacity-70" : ""}
    shadow placeholder:text-sm rounded py-1.5 px-2 w-full flex items-center`;
 
@@ -90,8 +90,10 @@ export function Input({
         )}
       </div>
       {invalid && (
-        <div className="absolute mt-[74px] flex w-full justify-end pr-1">
-          <p className="text-red-500">{invalid}</p>
+        <div className="absolute mt-[54px] flex w-full justify-end pr-1">
+          <p className="dark: text-xs text-red-500 dark:text-red-400">
+            {invalid}
+          </p>
         </div>
       )}
     </div>
