@@ -78,7 +78,7 @@ const ToggleMenuTrigger = forwardRef<HTMLLabelElement, ToggleMenuTriggerProps>(
                 >
                   <Icon
                     name="Close"
-                    className="cursor-pointer fill-black/40 stroke-black/40 stroke-[0.5px] transition-all duration-200 hover:fill-black hover:stroke-black"
+                    className="cursor-pointer fill-black/40 stroke-black/40 transition-all duration-200 hover:fill-black hover:stroke-black"
                     size={16}
                   />
                 </button>

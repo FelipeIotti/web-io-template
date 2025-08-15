@@ -1,5 +1,5 @@
 "use client";
-import { Loading } from "@/components/loading";
+import { Loading } from "@/components/ui/loading";
 import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

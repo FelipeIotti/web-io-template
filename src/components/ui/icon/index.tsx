@@ -12,13 +12,7 @@ interface IconProps {
   onClick?: () => void;
 }
 
-export function Icon({
-  name,
-  className,
-  size = 24,
-  strokeWidth = 4,
-  onClick,
-}: IconProps) {
+export function Icon({ name, className, size = 24, onClick }: IconProps) {
   const SelectedIcon = Icons[name];
 
   if (!SelectedIcon) {
@@ -30,7 +24,6 @@ export function Icon({
       className={className}
       height={size}
       width={size}
-      strokeWidth={strokeWidth}
       onClick={onClick}
     />
   );

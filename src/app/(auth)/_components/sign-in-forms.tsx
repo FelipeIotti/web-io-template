@@ -4,17 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useFormActionState } from "@/hooks/use-form-action-state";
 
-import { toast } from "@/components/toast";
+import { useRouter } from "next/navigation";
 import { signInAction } from "../_actions/sign-in-action";
 
 export function SignInForms() {
-  const [{ errors, message, success }, handleSubmit, isPending] =
-    useFormActionState(signInAction, () => {
-      toast({
-        title: "teste",
-        description: "teste descrição",
-      });
-    });
+  const router = useRouter();
+
+  const [{ errors }, handleSubmit, isPending] = useFormActionState(
+    signInAction,
+    () => {
+      router.push("/dashboard");
+    }
+  );
 
   return (
     <form onSubmit={handleSubmit} className="flex min-w-70 flex-col gap-8">
@@ -34,17 +35,7 @@ export function SignInForms() {
         />
       </div>
 
-      <Button
-        className="flex w-full justify-center"
-        isLoading={isPending}
-        type="button"
-        onClick={() =>
-          toast({
-            title: "teste",
-            description: "teste descrição",
-          })
-        }
-      >
+      <Button className="flex w-full justify-center" isLoading={isPending}>
         <p>Entrar</p>
       </Button>
     </form>

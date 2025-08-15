@@ -1,3 +1,4 @@
+import { toast } from "@/components/toast";
 import { FormEvent, useState, useTransition } from "react";
 import { requestFormReset } from "react-dom";
 
@@ -29,6 +30,11 @@ export function useFormActionState(
 
       if (state.success && onSuccess) {
         await onSuccess();
+        if (state.message)
+          toast({
+            text: state.message,
+            type: state.success ? "success" : "error",
+          });
       }
 
       setFormState(state);

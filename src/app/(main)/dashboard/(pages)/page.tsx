@@ -17,7 +17,7 @@ export default function Page() {
 
       <BarChart />
       <LineChart />
-      <div className="flex w-full gap-2">
+      <div className="grid  grid-cols-1 gap-2 md:grid-cols-2">
         <PieChart />
         <RadarChart />
       </div>

@@ -119,7 +119,7 @@ export function Table<T>({
 
           {/* {filtersTable && <Filter />} */}
         </div>
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex w-full flex-wrap items-center justify-between gap-4 sm:w-auto sm:justify-end">
           <SearchBar handleSearch={handleSearch} />
           <Pagination
             itemsQuantity={filteredData?.length}

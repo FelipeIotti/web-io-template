@@ -10,7 +10,7 @@ import { Columns } from "../_constants/columns";
 export default function Page() {
   return (
     <div className="flex w-full flex-col gap-8">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 ">
         {mockDataTotalizers.map(({ title, value, percentage, type }, index) => (
           <CardTotalizer
             key={index}

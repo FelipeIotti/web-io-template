@@ -12,6 +12,7 @@ export { default as ClipboardData } from "@/assets/icons/files/clipboard-data.sv
 export { default as EyeSlash } from "@/assets/icons/files/eye-slash.svg";
 export { default as Eye } from "@/assets/icons/files/eye.svg";
 export { default as Gear } from "@/assets/icons/files/gear.svg";
+export { default as Info } from "@/assets/icons/files/info-circle.svg";
 export { default as LayoutSidebar } from "@/assets/icons/files/layout-sidebar.svg";
 export { default as Moon } from "@/assets/icons/files/moon.svg";
 export { default as People } from "@/assets/icons/files/people.svg";

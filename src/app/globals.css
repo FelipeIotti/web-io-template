@@ -98,8 +98,8 @@
     border-width: 1px;
     border-style: solid;
     border-color: var(--color-input-border);
-    padding-inline: 2rem;
-    padding-block: 1.5rem;
+    padding-inline: 8px;
+    padding-block: 6px;
   }
   input:focus {
     outline: none;
