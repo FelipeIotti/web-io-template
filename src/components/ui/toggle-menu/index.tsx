@@ -119,7 +119,7 @@ const ToggleMenuContent = forwardRef<HTMLDivElement, ToggleMenuContentProps>(
           invisible z-[-1] w-auto 
           origin-top overflow-y-auto rounded border bg-white p-1 opacity-0 shadow
           transition-all duration-200 ease-out
-          peer-checked:pointer-events-auto peer-checked:visible peer-checked:z-40
+          peer-checked:pointer-events-auto peer-checked:visible peer-checked:z-50
           peer-checked:h-auto peer-checked:opacity-100 ${className}`}
         {...props}
       >

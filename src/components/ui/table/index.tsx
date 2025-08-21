@@ -110,7 +110,7 @@ export function Table<T>({
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex w-full flex-col gap-2">
       <div className="flex flex-row flex-wrap justify-between gap-4">
         <div className="flex flex-row items-end gap-2">
           {CustomFilter && CustomFilter}

@@ -7,7 +7,7 @@ import { Columns } from "../_constants/columns";
 
 export default function Page() {
   return (
-    <div className="">
+    <div className="flex w-full">
       <Table
         columns={Columns()}
         data={mockDataTable}

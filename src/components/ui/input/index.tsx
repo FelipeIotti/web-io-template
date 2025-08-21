@@ -38,7 +38,7 @@ export function Input({
   const baseClass = `
   ${invalid ? "border-red-500 dark:border-red-400" : ""} 
   ${readOnly ? "opacity-70" : ""}
-    shadow placeholder:text-sm rounded w-full flex items-center`;
+   shadow placeholder:text-sm rounded w-full flex items-center`;
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     let inputValue = event.target.value;
