@@ -2,6 +2,7 @@
 
 import React, { CSSProperties, ReactElement, useState } from "react";
 
+import { Text } from "@/components/ui/text";
 import { SearchBar } from "../search-bar";
 import { Pagination } from "./pagination";
 import { SkeletonTable } from "./skeleton-table";
@@ -17,6 +18,7 @@ import {
 export interface ColumnConfig<T> {
   key?: keyof T | string;
   name: React.ReactNode;
+  noTranslateColumn?: boolean;
   render: (entity: T, index: number) => React.ReactNode;
   rowStyle?: CSSProperties;
   columnStyle?: CSSProperties;
@@ -159,7 +161,9 @@ export function Table<T>({
           <TableRow className="hover:bg-transparent">
             {columns.map((column) => (
               <TableHead key={String(column.key)} style={column.columnStyle}>
-                {column.name && (column.name as string)}
+                <Text noTranslate={column.noTranslateColumn}>
+                  {column.name && (column.name as string)}
+                </Text>
               </TableHead>
             ))}
           </TableRow>

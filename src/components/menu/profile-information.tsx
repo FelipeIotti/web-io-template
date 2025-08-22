@@ -1,19 +1,22 @@
+"use client";
+import { useAuth } from "@/hooks/use-auth";
 import { ProfilePicture } from "../profile-picture";
+import { Text } from "../ui/text";
 
 export function ProfileInformation() {
-  return (
-    <div className="flex gap-2">
-      <ProfilePicture
-        userSpecific={{
-          id: "id1",
-          name: "Felipe Iotti",
-          email: "felipeizago@hotmail.com",
-        }}
-      />
+  const { user } = useAuth();
 
-      <div className="flex flex-col">
-        <p className="text-xs">Felipe Iotti</p>
-        <p className="text-xs opacity-60">felipeizago@hotmail.com</p>
+  return (
+    <div className="flex w-full gap-2">
+      <ProfilePicture />
+
+      <div className="flex w-full flex-col">
+        <Text className="text-xs" noTranslate>
+          {user.name}
+        </Text>
+        <Text className="truncate text-xs opacity-60" noTranslate noTooltip>
+          {user.email}
+        </Text>
       </div>
     </div>
   );

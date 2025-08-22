@@ -9,13 +9,8 @@ import {
 } from "recharts";
 import { Card } from "../card";
 import { Icon } from "../icon";
+import { Text } from "../text";
 import { ChartConfig, ChartContainer } from "./chart-components";
-
-export const description = "A radial chart with a custom shape";
-
-const chartData = [
-  { browser: "safari", visitors: 1260, fill: "var(--color-safari)" },
-];
 
 const chartConfig = {
   visitors: {
@@ -28,12 +23,32 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function RadialChart() {
+interface RadialChartProps {
+  title: string;
+  description: string;
+  footerText: string;
+  data: {
+    browser: string;
+    visitors: number;
+    fill: string;
+  }[];
+}
+
+export function RadialChart({
+  description,
+  footerText,
+  title,
+  data,
+}: RadialChartProps) {
   return (
     <Card>
       <div className="items-center pb-0">
-        <h1>Radial Chart - Shape</h1>
-        <p>January - June 2024</p>
+        <Text type="h1" noTranslate>
+          {title}
+        </Text>
+        <Text className="text-black/80" noTranslate>
+          {description}
+        </Text>
       </div>
       <div className="flex-1 pb-0">
         <ChartContainer
@@ -41,7 +56,7 @@ export function RadialChart() {
           className="mx-auto aspect-square max-h-[250px]"
         >
           <RadialBarChart
-            data={chartData}
+            data={data}
             endAngle={100}
             innerRadius={80}
             outerRadius={140}
@@ -70,7 +85,7 @@ export function RadialChart() {
                           y={viewBox.cy}
                           className="fill-text text-4xl font-bold"
                         >
-                          {chartData[0].visitors.toLocaleString()}
+                          {data[0].visitors.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
@@ -89,12 +104,10 @@ export function RadialChart() {
         </ChartContainer>
       </div>
       <div className="flex-col gap-2 text-sm">
-        <p className="flex items-center gap-2 leading-none ">
+        <p className="flex items-center gap-2 leading-none text-black/50">
           Trending up by 5.2% this month <Icon name="ArrowUpRight" size={16} />
         </p>
-        <p className="leading-none">
-          Showing total visitors for the last 6 months
-        </p>
+        <Text className="leading-none text-black/40">{footerText}</Text>
       </div>
     </Card>
   );

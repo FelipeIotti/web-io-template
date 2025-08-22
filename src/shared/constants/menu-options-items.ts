@@ -1,24 +1,20 @@
 import { IconNameType } from "@/components/ui/icon";
 
-export const menuOptionsItems = [
-  {
-    label: "Dashboard",
+export const menuOptionsItems = {
+  dashboard: {
+    label: "dashboard",
     icon: "BarChart" as IconNameType,
-    path: "/dashboard",
   },
-  {
-    label: "Despesass",
+  outgoing: {
+    label: "outgoing",
     icon: "ClipboardData" as IconNameType,
-    path: "/outgoing",
   },
-  {
-    label: "Funcionários",
+  associates: {
+    label: "associates",
     icon: "Briefcase" as IconNameType,
-    path: "/employers",
   },
-  {
-    label: "Clientes",
+  clients: {
+    label: "clients",
     icon: "People" as IconNameType,
-    path: "/clients",
   },
-];
+};

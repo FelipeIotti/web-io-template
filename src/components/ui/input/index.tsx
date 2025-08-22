@@ -1,5 +1,7 @@
 "use client";
 
+import { Text } from "@/components/ui/text";
+import { useTranslations } from "next-intl";
 import React, { ChangeEvent, InputHTMLAttributes, useState } from "react";
 import { Icon } from "../icon";
 import { Label } from "../label";
@@ -29,6 +31,7 @@ export function Input({
   className,
   ...rest
 }: InputProps) {
+  const t = useTranslations();
   const [show, setShow] = useState<boolean | null>(null);
 
   const invalid =
@@ -65,7 +68,7 @@ export function Input({
         <input
           name={name}
           className={baseClass}
-          placeholder={placeholder}
+          placeholder={placeholder ? t(placeholder) : ""}
           type={type === "password" ? (show ? "text" : "password") : type}
           readOnly={readOnly}
           onChange={handleInputChange}
@@ -91,9 +94,9 @@ export function Input({
       </div>
       {invalid && (
         <div className="absolute mt-[54px] flex w-full justify-end pr-1">
-          <p className="dark: text-xs text-red-500 dark:text-red-400">
+          <Text className="dark: text-xs text-red-500 dark:text-red-400">
             {invalid}
-          </p>
+          </Text>
         </div>
       )}
     </div>

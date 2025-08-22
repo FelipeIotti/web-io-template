@@ -1,6 +1,8 @@
 "use client";
 import { useAuth } from "@/hooks/use-auth";
 import { UserDTO } from "@/shared/dtos/users/user-DTO";
+import Image from "next/image";
+import { Text } from "../ui/text";
 
 interface ProfilePictureProps {
   userSpecific?: UserDTO;
@@ -19,9 +21,13 @@ export function ProfilePicture({ userSpecific }: ProfilePictureProps) {
 
   return (
     <div className="bg-primary/20 flex items-center justify-center overflow-hidden rounded px-2.5 py-1.5">
-      <p className="text-primary text-sm">
-        {userProfile.name && getInitials(userProfile.name)}
-      </p>
+      {userProfile.profile_picture ? (
+        <Image src={userProfile.profile_picture} alt={userProfile.name} />
+      ) : (
+        <Text className="text-primary text-xs" noTranslate>
+          {userProfile.name && getInitials(userProfile.name)}
+        </Text>
+      )}
     </div>
   );
 }

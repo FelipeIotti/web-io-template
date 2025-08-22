@@ -1,21 +1,15 @@
 "use client";
+import { usePathname } from "@/i18n/navigation";
 import { menuOptionsItems } from "@/shared/constants/menu-options-items";
-import { usePathname } from "next/navigation";
-import { Icon } from "../ui/icon";
 import { IconButton } from "../ui/icon-button";
-import {
-  ToggleMenu,
-  ToggleMenuContent,
-  ToggleMenuItem,
-  ToggleMenuTrigger,
-} from "../ui/toggle-menu";
+import { Text } from "../ui/text";
 
 export function Header() {
   const pathname = usePathname();
 
-  const label =
-    menuOptionsItems.find((item) => item.path === pathname)?.label ||
-    "Dashboard";
+  const path = pathname.split("/")[pathname.split("/").length - 1];
+
+  const label = menuOptionsItems[path as keyof typeof menuOptionsItems]?.label;
 
   return (
     <div className="flex flex-col">
@@ -31,32 +25,8 @@ export function Header() {
             <div className="bg-border h-full w-0.25" />
           </div>
 
-          <p>{label}</p>
+          <Text className="font-bold">{label}</Text>
         </div>
-
-        <ToggleMenu>
-          <ToggleMenuTrigger className="bg-input border-input-border gap-2 border px-2 py-1 hover:opacity-50">
-            <p>empresa 1</p>
-            <Icon name="ChevronDown" size={10} className="fill-text" />
-          </ToggleMenuTrigger>
-          <ToggleMenuContent className="right-0">
-            <ToggleMenuItem>
-              <Icon name={"Sun"} size={14} className="fill-text" />
-
-              <p>Empresa 1 asd</p>
-            </ToggleMenuItem>
-            <ToggleMenuItem>
-              <Icon name={"Sun"} size={14} className="fill-text" />
-
-              <p>Empresa 2</p>
-            </ToggleMenuItem>
-            <ToggleMenuItem>
-              <Icon name={"Sun"} size={14} className="fill-text" />
-
-              <p>Empresa 3</p>
-            </ToggleMenuItem>
-          </ToggleMenuContent>
-        </ToggleMenu>
       </div>
       <div className="bg-border h-0.25 w-full" />
     </div>

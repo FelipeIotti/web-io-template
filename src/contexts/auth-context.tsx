@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "@/i18n/navigation";
 import { cookiesAuthTokenRemove } from "@/shared/cookies/token-cookies";
 import {
   cookiesUserGet,
@@ -7,7 +8,6 @@ import {
   cookiesUserSave,
 } from "@/shared/cookies/user-cookies";
 import { UserDTO } from "@/shared/dtos/users/user-DTO";
-import { useRouter } from "next/navigation";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 export type AuthContextDataProps = {

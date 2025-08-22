@@ -1,19 +1,16 @@
 export class AppError {
   status: number;
   message: string;
-  errors: Record<string, string> | string;
-  error: string;
+  errors: Record<string, string[]> | null;
 
   constructor(error: {
     status: number;
     message?: string | null;
-    errors?: Record<string, string> | string | null;
-    error?: string | null;
+    errors?: Record<string, string[]> | null;
   }) {
     this.status = error?.status ?? 503;
     this.message = error?.message ?? "";
-    this.errors = error?.errors ?? "";
-    this.error = error?.error ?? "";
+    this.errors = error?.errors ?? null;
   }
 
   toJSON() {
@@ -21,7 +18,6 @@ export class AppError {
       status: this.status,
       message: this.message,
       errors: this.errors,
-      error: this.error,
     };
   }
 }

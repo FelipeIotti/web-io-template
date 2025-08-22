@@ -1,4 +1,6 @@
 export { default as ArrowDownRight } from "@/assets/icons/files/arrow-down-right.svg";
+export { default as ArrowLeft } from "@/assets/icons/files/arrow-left.svg";
+export { default as ArrowRight } from "@/assets/icons/files/Arrow-right.svg";
 export { default as ArrowUpRight } from "@/assets/icons/files/arrow-up-right.svg";
 export { default as BarChart } from "@/assets/icons/files/bar-chart.svg";
 export { default as BoxArrowRight } from "@/assets/icons/files/box-arrow-right.svg";
@@ -12,9 +14,11 @@ export { default as ClipboardData } from "@/assets/icons/files/clipboard-data.sv
 export { default as EyeSlash } from "@/assets/icons/files/eye-slash.svg";
 export { default as Eye } from "@/assets/icons/files/eye.svg";
 export { default as Gear } from "@/assets/icons/files/gear.svg";
-export { default as Info } from "@/assets/icons/files/info-circle.svg";
+export { default as InfoCircle } from "@/assets/icons/files/info-circle.svg";
+export { default as Info } from "@/assets/icons/files/info.svg";
 export { default as LayoutSidebar } from "@/assets/icons/files/layout-sidebar.svg";
 export { default as Moon } from "@/assets/icons/files/moon.svg";
+export { default as Pencil } from "@/assets/icons/files/pencil.svg";
 export { default as People } from "@/assets/icons/files/people.svg";
 export { default as Plus } from "@/assets/icons/files/plus.svg";
 export { default as Search } from "@/assets/icons/files/search.svg";
@@ -22,4 +26,5 @@ export { default as Server } from "@/assets/icons/files/server.svg";
 export { default as Sun } from "@/assets/icons/files/sun.svg";
 export { default as ThreeDotsVertical } from "@/assets/icons/files/three-dots-vertical.svg";
 export { default as ThreeDots } from "@/assets/icons/files/three-dots.svg";
+export { default as Trash } from "@/assets/icons/files/trash.svg";
 export { default as Close } from "@/assets/icons/files/x.svg";

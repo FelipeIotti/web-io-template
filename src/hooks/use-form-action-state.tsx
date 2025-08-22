@@ -1,22 +1,24 @@
+"use client";
+
 import { toast } from "@/components/toast";
 import { FormEvent, useState, useTransition } from "react";
-import { requestFormReset } from "react-dom";
 
-interface FormState {
+interface FormState<T> {
   success: boolean;
   message: string | null;
   errors: Record<string, string[]> | null;
+  data?: T | null;
 }
 
-export function useFormActionState(
-  action: (data: FormData) => Promise<FormState>,
-  onSuccess?: () => Promise<void> | void,
-  initialState?: FormState
+export function useFormActionState<T>(
+  action: (data: FormData) => Promise<FormState<T>>,
+  onSubmit?: (data?: T | null, success?: boolean) => Promise<void> | void,
+  initialState?: FormState<T>
 ) {
   const [isPending, startTransition] = useTransition();
 
   const [formState, setFormState] = useState(
-    initialState ?? { success: false, message: null, errors: null }
+    initialState ?? { success: false, message: null, errors: null, data: null }
   );
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -28,18 +30,18 @@ export function useFormActionState(
     startTransition(async () => {
       const state = await action(data);
 
-      if (state.success && onSuccess) {
-        await onSuccess();
-        if (state.message)
+      if (onSubmit) {
+        await onSubmit(state?.data, state.success);
+        if (state.message) {
           toast({
-            text: state.message,
+            text: state?.message,
             type: state.success ? "success" : "error",
           });
+        }
+        if (state.success) form.reset();
       }
 
       setFormState(state);
-
-      if (state.success) requestFormReset(form);
     });
   }
 

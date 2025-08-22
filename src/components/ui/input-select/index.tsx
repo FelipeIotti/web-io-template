@@ -2,6 +2,7 @@ import { OptionsDTO } from "@/shared/dtos/options-DTO";
 import { useRef, useState } from "react";
 import { Icon } from "../icon";
 import { Label } from "../label";
+import { Text } from "../text";
 import {
   ToggleMenu,
   ToggleMenuContent,
@@ -28,6 +29,7 @@ export function InputSelect({
 }: SelectProps) {
   const hiddenInputRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLParagraphElement>(null);
+
   const [isSelected, setIsSelected] = useState<OptionsDTO | null>(null);
 
   function handleSelect(option: OptionsDTO | null) {
@@ -59,17 +61,17 @@ export function InputSelect({
           value={JSON.stringify(value) || hiddenInputRef.current?.value}
         />
         <ToggleMenuTrigger
-          className="input shadow"
+          className="input w-full shadow"
           selectButtons
           onClear={() => handleSelect(null)}
           notClear={notClear && !!hiddenInputRef.current?.value.length}
         >
-          <p
+          <Text
             ref={labelRef}
             className={`truncate ${isSelected ? "" : "opacity-40"}`}
           >
             {placeholder}
-          </p>
+          </Text>
         </ToggleMenuTrigger>
 
         <ToggleMenuContent className="right-0 max-h-40 max-w-60">

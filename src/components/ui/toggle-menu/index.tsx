@@ -5,6 +5,7 @@ import {
   HTMLAttributes,
   LabelHTMLAttributes,
   ReactNode,
+  useId,
 } from "react";
 import { Icon } from "../icon";
 
@@ -26,6 +27,7 @@ interface ToggleMenuTriggerProps extends LabelHTMLAttributes<HTMLLabelElement> {
   onClear?: () => void;
   notClear?: boolean;
   selectButtons?: boolean;
+  defaultMenuId?: string | null;
 }
 
 const ToggleMenuTrigger = forwardRef<HTMLLabelElement, ToggleMenuTriggerProps>(
@@ -37,32 +39,33 @@ const ToggleMenuTrigger = forwardRef<HTMLLabelElement, ToggleMenuTriggerProps>(
       onClear,
       selectButtons = false,
       notClear = false,
+      defaultMenuId = null,
       ...props
     },
     ref
   ) => {
-    const identifier = Math.random();
+    const menuId = useId();
 
     return (
       <>
         <input
           type="checkbox"
-          id={`toggle-menu-${identifier}`}
+          id={defaultMenuId || menuId}
           className="peer hidden"
         />
         <label
-          htmlFor={`toggle-menu-${identifier}`}
+          htmlFor={defaultMenuId || menuId}
           className="fixed inset-0 z-20 hidden peer-checked:block"
         />
         <label
           ref={ref}
-          htmlFor={`toggle-menu-${identifier}`}
+          htmlFor={defaultMenuId || menuId}
           className={`group relative z-30 flex w-full cursor-pointer items-center justify-between gap-1.5 rounded 
             ${disabled ? "cursor-not-allowed opacity-50" : ""}
             ${className}`}
           {...props}
         >
-          {children}
+          <div className="flex w-full max-w-[80%]">{children}</div>
 
           {selectButtons && (
             <div className="flex h-full items-center gap-1">
@@ -79,7 +82,7 @@ const ToggleMenuTrigger = forwardRef<HTMLLabelElement, ToggleMenuTriggerProps>(
                   <Icon
                     name="Close"
                     className="cursor-pointer fill-black/40 stroke-black/40 transition-all duration-200 hover:fill-black hover:stroke-black"
-                    size={16}
+                    size={10}
                   />
                 </button>
               )}

@@ -1,0 +1,25 @@
+"use client";
+
+import { ColumnConfig } from "@/components/ui/table";
+import { TextCell } from "@/components/ui/table/special-cells/text-cell";
+import { UserDTO } from "@/shared/dtos/users/user-DTO";
+
+export function Columns(): ColumnConfig<UserDTO>[] {
+  return [
+    {
+      key: "name",
+      name: "name",
+      render: (entity) => <TextCell text={entity.name} />,
+    },
+    {
+      key: "areas_count",
+      name: "email",
+      render: (entity) => <TextCell text={entity.email} />,
+    },
+    {
+      key: "users_count",
+      name: "count",
+      render: (entity) => <TextCell text={entity.name} />,
+    },
+  ];
+}

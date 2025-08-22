@@ -18,7 +18,7 @@ const eslintConfig = [
       tailwindcss: {
         removeDuplicates: true,
 
-        whitelist: [".*(primary|secondary|foreground|background|input|scrollbar|scrollbar-thumb-black|scrollbar-track-white|border|fill)(/\\d+)?$", "fill-text", "text", "input", "scrollbar-thin"],
+        whitelist: [".*(primary|secondary|foreground|background|input|scrollbar|scrollbar-thumb-black|scrollbar-track-white|border|fill|fill-text)(/\\d+)?$", "fill-text", "text", "input", "scrollbar-thin"],
         // classRegex: "^class(primary)?$",
       },
     },

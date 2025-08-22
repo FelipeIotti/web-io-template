@@ -3,6 +3,7 @@ import { applyMask } from "@/shared/utils/mask";
 
 import React, { ChangeEvent, TextareaHTMLAttributes } from "react";
 
+import { useTranslations } from "next-intl";
 import { Label } from "../label";
 
 export interface InputTextAreaProps
@@ -31,6 +32,8 @@ export function InputTextArea({
   className,
   ...rest
 }: InputTextAreaProps) {
+  const t = useTranslations();
+
   const invalid =
     errors?.[name]?.[0] ||
     (name ? errors?.[name.split(".").pop() as string]?.[0] : undefined);
@@ -58,7 +61,7 @@ export function InputTextArea({
       <textarea
         name={name}
         className={baseClass}
-        placeholder={placeholder}
+        placeholder={placeholder ? t(placeholder) : ""}
         readOnly={readOnly}
         onChange={handleInputChange}
         style={{ minHeight: 150, resize: "none" }}

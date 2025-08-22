@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Icon, IconNameType } from "../ui/icon";
+import { Text } from "../ui/text";
 
 interface MenuItemProps {
   label: string;
@@ -26,28 +26,30 @@ const Item = ({
         name={icon as IconNameType}
         size={22}
       />
-      <p
+      <Text
         className={`whitespace-nowrap  ${
           isSelected ? "font-bold" : "opacity-50"
         }`}
       >
         {label}
-      </p>
+      </Text>
     </>
   );
 };
 
-export function MenuItem({ path, label, icon }: MenuItemProps) {
+export function MenuItem({ label, icon }: MenuItemProps) {
   const pathname = usePathname();
+
+  const isSelected = pathname.split("/").includes(label);
 
   const baseClass =
     "flex flex-nowrap items-center gap-3 px-2 py-3 transition-all duration-200 hover:bg-black/10 rounded cursor-pointer";
 
   return (
     <>
-      {path ? (
-        <Link href={path} className={baseClass}>
-          <Item label={label} icon={icon} isSelected={pathname === path} />
+      {label ? (
+        <Link href={`/main/${label}`} className={baseClass}>
+          <Item label={label} icon={icon} isSelected={isSelected} />
         </Link>
       ) : (
         <div className={baseClass}>

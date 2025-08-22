@@ -5,6 +5,7 @@ import { HTMLAttributes, useRef, useState } from "react";
 import { DateRange, Mode } from "react-day-picker";
 import { Calendar } from "../calendar";
 import { Label } from "../label";
+import { Text } from "../text";
 import {
   ToggleMenu,
   ToggleMenuContent,
@@ -84,13 +85,12 @@ export function InputDatePicker({
           notClear={notClear && !!hiddenInputRef.current?.value.length}
           onClick={() => setShow(!show)}
         >
-          <p
-            className={` max-w-[90%]  truncate whitespace-nowrap ${
-              buttonText ? "" : "opacity-40"
-            }`}
+          <Text
+            className={`truncate ${buttonText ? "" : "opacity-40"}`}
+            noTranslate={!!buttonText}
           >
             {buttonText || placeholder}
-          </p>
+          </Text>
         </ToggleMenuTrigger>
 
         <ToggleMenuContent

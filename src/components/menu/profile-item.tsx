@@ -1,9 +1,8 @@
 "use client";
 import { useSettings } from "@/hooks/use-settings";
-import { themesOptions } from "@/shared/constants/select-options/theme-options";
-
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Icon } from "../ui/icon";
+import { Text } from "../ui/text";
 import {
   ToggleMenu,
   ToggleMenuContent,
@@ -19,7 +18,7 @@ export function ProfileItem() {
 
   return (
     <ToggleMenu>
-      <ToggleMenuTrigger className="gap-3 px-2 py-3 peer-checked:bg-black/10 hover:bg-black/10">
+      <ToggleMenuTrigger className="flex gap-3 px-2 py-3 peer-checked:bg-black/10 hover:bg-black/10">
         <ProfileInformation />
         <Icon className="fill-black" name="ThreeDotsVertical" size={18} />
       </ToggleMenuTrigger>
@@ -40,7 +39,7 @@ export function ProfileItem() {
               className="fill-text"
             />
 
-            <p>{themesOptions[theme === "light" ? "dark" : "light"].label}</p>
+            <Text>{theme}</Text>
           </ToggleMenuItem>
         </div>
 
@@ -49,7 +48,7 @@ export function ProfileItem() {
             <ToggleMenuItem className="flex gap-2">
               <Icon name="BoxArrowRight" size={16} className="fill-text" />
 
-              <p>Sair</p>
+              <Text>exit</Text>
             </ToggleMenuItem>
           </Link>
         </ToggleMenuFooter>
