@@ -44,5 +44,11 @@
   "view": "Visualizar",
   "confirm": "Confirmar",
   "delete_title": "Deletar registro",
-  "delete_description": "Você tem certeza que deseja deletar o registro? Uma vez deletado não é possível recupera-lo!"
+  "delete_description": "Você tem certeza que deseja deletar o registro? Uma vez deletado não é possível recupera-lo!",
+  "language": "Idioma",
+  "br": "Português (Brasil)",
+  "en": "Inglês",
+  "es": "Espanhol",
+  "select": "Selecione",
+  "teste": "Teste portugues"
 }

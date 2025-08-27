@@ -48,7 +48,7 @@ export function EditDeleteCell({ id, onDelete }: EditDeleteCellProps) {
 
   return (
     <>
-      <ToggleMenu className="z-100">
+      <ToggleMenu>
         <ToggleMenuTrigger
           className="flex peer-checked:bg-black/10"
           defaultMenuId={menuId}

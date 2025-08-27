@@ -107,7 +107,9 @@ export function RadialChart({
         <p className="flex items-center gap-2 leading-none text-black/50">
           Trending up by 5.2% this month <Icon name="ArrowUpRight" size={16} />
         </p>
-        <Text className="leading-none text-black/40">{footerText}</Text>
+        <Text className="leading-none text-black/40" noTranslate>
+          {footerText}
+        </Text>
       </div>
     </Card>
   );

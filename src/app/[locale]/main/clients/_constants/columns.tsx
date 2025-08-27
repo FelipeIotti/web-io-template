@@ -17,9 +17,19 @@ export function Columns(): ColumnConfig<UserDTO>[] {
       render: (entity) => <TextCell text={entity.email} noTranslate />,
     },
     {
-      key: "users_count",
+      key: "id",
       name: "count",
       render: (entity) => <TextCell text={entity.name} noTranslate />,
+    },
+    {
+      key: "email3",
+      name: "trending_up_description",
+      render: (entity) => <TextCell text={entity.email2} noTranslate />,
+    },
+    {
+      key: "email3",
+      name: "trending_up_description",
+      render: (entity) => <TextCell text={entity.email2} noTranslate />,
     },
   ];
 }

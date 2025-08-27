@@ -15,7 +15,7 @@ interface ToggleMenuRootProps extends HTMLAttributes<HTMLDivElement> {
 
 const ToggleMenu = forwardRef<HTMLDivElement, ToggleMenuRootProps>(
   ({ className = "", children, ...props }, ref) => (
-    <div ref={ref} className={`relative flex ${className}`} {...props}>
+    <div ref={ref} className={`relative z-50 flex ${className}`} {...props}>
       {children}
     </div>
   )
@@ -46,26 +46,44 @@ const ToggleMenuTrigger = forwardRef<HTMLLabelElement, ToggleMenuTriggerProps>(
   ) => {
     const menuId = useId();
 
+    const identifier = defaultMenuId || menuId;
+
     return (
       <>
         <input
           type="checkbox"
-          id={defaultMenuId || menuId}
+          id={identifier}
           className="peer hidden"
+          data-toggle-menu-input
+          onChange={(e) => {
+            const me = e.currentTarget;
+            if (me.checked) {
+              document
+                .querySelectorAll<HTMLInputElement>(
+                  "input[data-toggle-menu-input]"
+                )
+                .forEach((el) => {
+                  if (el !== me && el.checked) {
+                    el.checked = false;
+                    el.dispatchEvent(new Event("change", { bubbles: true }));
+                  }
+                });
+            }
+          }}
         />
         <label
-          htmlFor={defaultMenuId || menuId}
-          className="fixed inset-0 z-20 hidden peer-checked:block"
+          htmlFor={identifier}
+          className="fixed inset-0 z-40 hidden peer-checked:block"
         />
         <label
           ref={ref}
-          htmlFor={defaultMenuId || menuId}
-          className={`group relative z-30 flex w-full cursor-pointer items-center justify-between gap-1.5 rounded 
+          htmlFor={identifier}
+          className={`group relative z-50 flex w-full cursor-pointer items-center justify-between gap-1.5 rounded 
             ${disabled ? "cursor-not-allowed opacity-50" : ""}
             ${className}`}
           {...props}
         >
-          <div className="flex w-full max-w-[80%]">{children}</div>
+          <div className="flex w-full max-w-[80%] gap-3">{children}</div>
 
           {selectButtons && (
             <div className="flex h-full items-center gap-1">
@@ -119,7 +137,7 @@ const ToggleMenuContent = forwardRef<HTMLDivElement, ToggleMenuContentProps>(
         ref={ref}
         className={`absolute ${orientationConfig[orientation]} 
           scrollbar-thin scrollbar-thumb-black/20 scrollbar-track-white
-          invisible z-[-1] w-auto 
+          invisible  z-[9999] w-auto 
           origin-top overflow-y-auto rounded border bg-white p-1 opacity-0 shadow
           transition-all duration-200 ease-out
           peer-checked:pointer-events-auto peer-checked:visible peer-checked:z-50

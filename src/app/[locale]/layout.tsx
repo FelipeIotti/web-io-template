@@ -8,9 +8,6 @@ interface RootLayoutProps {
 }
 
 export default async function Layout({ children }: RootLayoutProps) {
-  // const locale = await cookiesLanguageGet();
-  // const messages = await getMessages();
-
   return (
     <NextIntlClientProvider>
       <Toaster duration={4000} />

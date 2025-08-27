@@ -1,13 +1,14 @@
 "use client";
 import { usePathname } from "@/i18n/navigation";
 import { menuOptionsItems } from "@/shared/constants/menu-options-items";
+import { BackButton } from "../back-button";
 import { IconButton } from "../ui/icon-button";
 import { Text } from "../ui/text";
 
 export function Header() {
   const pathname = usePathname();
 
-  const path = pathname.split("/")[pathname.split("/").length - 1];
+  const path = pathname.split("/")[2];
 
   const label = menuOptionsItems[path as keyof typeof menuOptionsItems]?.label;
 
@@ -27,6 +28,7 @@ export function Header() {
 
           <Text className="font-bold">{label}</Text>
         </div>
+        {pathname.split("/").length > 3 && <BackButton />}
       </div>
       <div className="bg-border h-0.25 w-full" />
     </div>

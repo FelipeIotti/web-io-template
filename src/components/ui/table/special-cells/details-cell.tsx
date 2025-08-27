@@ -14,7 +14,7 @@ export function DetailsCell({ modalContent }: DetailsCellProps) {
       <IconButton
         iconName="Info"
         iconClassName="fill-black"
-        className="p-1.5"
+        className="rounded border p-1"
         iconSize={12}
         onClick={() => setShowDetailsModal(true)}
       />

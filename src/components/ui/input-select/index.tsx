@@ -22,7 +22,7 @@ interface SelectProps {
 export function InputSelect({
   options,
   label,
-  placeholder = "select...",
+  placeholder = "select",
   notClear = true,
   onChange,
   value,

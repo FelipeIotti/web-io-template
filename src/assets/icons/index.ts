@@ -26,5 +26,6 @@ export { default as Server } from "@/assets/icons/files/server.svg";
 export { default as Sun } from "@/assets/icons/files/sun.svg";
 export { default as ThreeDotsVertical } from "@/assets/icons/files/three-dots-vertical.svg";
 export { default as ThreeDots } from "@/assets/icons/files/three-dots.svg";
+export { default as Translate } from "@/assets/icons/files/translate.svg";
 export { default as Trash } from "@/assets/icons/files/trash.svg";
 export { default as Close } from "@/assets/icons/files/x.svg";

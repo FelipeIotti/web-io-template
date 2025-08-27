@@ -157,10 +157,14 @@ export function Table<T>({
       {/* {filtersTable && <FilterTypes filtersTable={filtersTable} />} */}
 
       <TableComponent>
-        <TableHeader>
-          <TableRow className="hover:bg-transparent">
+        <TableHeader className="bg-green-500">
+          <TableRow className="bg-red-500 hover:bg-transparent">
             {columns.map((column) => (
-              <TableHead key={String(column.key)} style={column.columnStyle}>
+              <TableHead
+                className=" bg-blue-500"
+                key={String(column.key)}
+                style={column.columnStyle}
+              >
                 <Text noTranslate={column.noTranslateColumn}>
                   {column.name && (column.name as string)}
                 </Text>
@@ -168,16 +172,20 @@ export function Table<T>({
             ))}
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="bg-yellow-500">
           {isLoading ? (
             <SkeletonTable row={itemsPerPage} />
           ) : (
             data &&
             paginatedData &&
             paginatedData.map((row, index) => (
-              <TableRow key={index}>
+              <TableRow className="bg-red-500" key={index}>
                 {columns.map((column) => (
-                  <TableCell key={String(column.key)} style={column.rowStyle}>
+                  <TableCell
+                    className=" bg-purple-500"
+                    key={String(column.key)}
+                    style={column.rowStyle}
+                  >
                     {column.render(row, index)}
                   </TableCell>
                 ))}
