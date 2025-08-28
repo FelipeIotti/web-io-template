@@ -112,7 +112,7 @@ export function Table<T>({
   }
 
   return (
-    <div className="flex w-full flex-col gap-2">
+    <div className="flex h-full w-full flex-col gap-2">
       <div className="flex flex-row flex-wrap justify-between gap-4">
         <div className="flex flex-row items-end gap-2">
           {CustomFilter && CustomFilter}
@@ -157,14 +157,10 @@ export function Table<T>({
       {/* {filtersTable && <FilterTypes filtersTable={filtersTable} />} */}
 
       <TableComponent>
-        <TableHeader className="bg-green-500">
-          <TableRow className="bg-red-500 hover:bg-transparent">
+        <TableHeader>
+          <TableRow className="hover:bg-transparent">
             {columns.map((column) => (
-              <TableHead
-                className=" bg-blue-500"
-                key={String(column.key)}
-                style={column.columnStyle}
-              >
+              <TableHead key={String(column.key)} style={column.columnStyle}>
                 <Text noTranslate={column.noTranslateColumn}>
                   {column.name && (column.name as string)}
                 </Text>
@@ -172,20 +168,16 @@ export function Table<T>({
             ))}
           </TableRow>
         </TableHeader>
-        <TableBody className="bg-yellow-500">
+        <TableBody>
           {isLoading ? (
             <SkeletonTable row={itemsPerPage} />
           ) : (
             data &&
             paginatedData &&
             paginatedData.map((row, index) => (
-              <TableRow className="bg-red-500" key={index}>
+              <TableRow key={index}>
                 {columns.map((column) => (
-                  <TableCell
-                    className=" bg-purple-500"
-                    key={String(column.key)}
-                    style={column.rowStyle}
-                  >
+                  <TableCell key={String(column.key)} style={column.rowStyle}>
                     {column.render(row, index)}
                   </TableCell>
                 ))}
@@ -193,6 +185,11 @@ export function Table<T>({
             ))
           )}
         </TableBody>
+        {paginatedData && paginatedData.length === 0 && (
+          <div className="absolute  top-15 flex h-full w-full items-center justify-center">
+            <Text className="text-center opacity-50">no_data_found</Text>
+          </div>
+        )}
       </TableComponent>
     </div>
   );

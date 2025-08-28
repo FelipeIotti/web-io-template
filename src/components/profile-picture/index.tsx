@@ -20,11 +20,11 @@ export function ProfilePicture({ userSpecific }: ProfilePictureProps) {
   const userProfile = userSpecific ?? user;
 
   return (
-    <div className="bg-primary/20 flex items-center justify-center overflow-hidden rounded px-2.5 py-1.5">
+    <div className="bg-primary/20 flex h-full min-h-8 items-center justify-center overflow-hidden rounded px-2">
       {userProfile.profile_picture ? (
         <Image src={userProfile.profile_picture} alt={userProfile.name} />
       ) : (
-        <Text className="text-primary text-xs" noTranslate>
+        <Text className="text-primary text-[10px]" noTranslate>
           {userProfile.name && getInitials(userProfile.name)}
         </Text>
       )}

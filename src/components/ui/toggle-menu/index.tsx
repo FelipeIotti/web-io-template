@@ -83,7 +83,7 @@ const ToggleMenuTrigger = forwardRef<HTMLLabelElement, ToggleMenuTriggerProps>(
             ${className}`}
           {...props}
         >
-          <div className="flex w-full max-w-[80%] gap-3">{children}</div>
+          <div className="flex w-full gap-3">{children}</div>
 
           {selectButtons && (
             <div className="flex h-full items-center gap-1">

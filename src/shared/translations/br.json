@@ -50,5 +50,10 @@
   "en": "Inglês",
   "es": "Espanhol",
   "select": "Selecione",
-  "teste": "Teste portugues"
+  "teste": "Teste portugues",
+  "no_data_found": "Nenhum dado encontrado",
+  "active": "ativo",
+  "inactive": "inativo",
+  "user_type": "Tipo do usuário",
+  "status": "Status"
 }

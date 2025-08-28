@@ -10,7 +10,7 @@ interface ScreenWrapperProps {
 export function ScreenWrapper({ children, className }: ScreenWrapperProps) {
   return (
     <div
-      className={`bg-foreground flex h-full w-full flex-col rounded pb-4 shadow-md ${className}`}
+      className={`bg-foreground absolute right-0 z-20 flex h-full w-[85%] flex-col rounded pb-4 shadow-md transition-all duration-300 ease-in-out peer-checked:w-[100%]  ${className}`}
     >
       <Header />
 

@@ -8,11 +8,18 @@ interface RootLayoutProps {
 
 export default async function Layout({ children }: RootLayoutProps) {
   return (
-    <div className="bg-background flex h-screen px-2 py-3">
-      <input type="checkbox" id="toggle-menu-sidebar" className="peer hidden" />
+    <div className="bg-background h-screen w-full px-2 py-3">
+      <div className="relative flex h-full w-full">
+        <input
+          type="checkbox"
+          id="toggle-menu-sidebar"
+          className="peer hidden"
+        />
 
-      <Menu />
-      <ScreenWrapper>{children}</ScreenWrapper>
+        <Menu />
+
+        <ScreenWrapper>{children}</ScreenWrapper>
+      </div>
     </div>
   );
 }

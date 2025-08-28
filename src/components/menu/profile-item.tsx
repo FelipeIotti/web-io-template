@@ -17,10 +17,16 @@ export function ProfileItem() {
   const { theme, changeTheme } = useSettings();
 
   return (
-    <ToggleMenu>
-      <ToggleMenuTrigger className="flex gap-3 px-2 py-3 peer-checked:bg-black/10 hover:bg-black/10">
-        <ProfileInformation />
-        <Icon className="fill-black" name="ThreeDotsVertical" size={18} />
+    <ToggleMenu className="z-300">
+      <ToggleMenuTrigger className=" peer-checked:bg-black/10 hover:bg-black/10">
+        <div className="flex w-full items-center gap-3 px-2 py-3">
+          <div className="w-[80%]">
+            <ProfileInformation />
+          </div>
+          <div className="hidden w-[20%] sm:flex">
+            <Icon className="fill-black" name="ThreeDotsVertical" size={18} />
+          </div>
+        </div>
       </ToggleMenuTrigger>
 
       <ToggleMenuContent orientation="right" className="bottom-0">

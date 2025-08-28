@@ -19,7 +19,7 @@ export function IconButton({
 }: IconButtonProps) {
   return (
     <button
-      className={`flex items-center justify-center rounded-sm p-1 transition-all duration-200 ${
+      className={`flex menu-icon-button items-center justify-center rounded-sm p-1 transition-all duration-200 ${
         !rest.disabled ? "cursor-pointer hover:bg-black/10" : "opacity-60"
       } ${className}`}
       {...rest}

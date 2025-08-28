@@ -8,41 +8,31 @@ import { Icon } from "../icon";
 interface SearchBarProps {
   handleSearch?: (searchTerm: string) => void;
   className?: string;
-  value?: string;
+
   placeholder?: string;
 }
 
 export function SearchBar({
   handleSearch,
   className,
-  value,
   placeholder = "search",
 }: SearchBarProps) {
   const t = useTranslations();
-  // const { handleSearchFilter, searchTerm, setSearchTerm } = useFilter();
+
   const [searchTerm, setSearchTerm] = useState("");
-  function handleSearchFilter(term: string) {
-    setSearchTerm(term.toLowerCase());
-  }
 
   const debouncedFetchData = useCallback(
-    debounce(handleSearch ?? handleSearchFilter, 100),
-    [searchTerm]
+    debounce((value: string) => {
+      handleSearch?.(value);
+    }, 100),
+    [handleSearch]
   );
 
-  const isControlled = value !== undefined;
-
-  const inputValue = isControlled ? value : searchTerm;
-
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    const inputVal = event.target.value.toLowerCase();
+    const inputValue = event.target.value;
+    setSearchTerm(inputValue);
 
-    if (isControlled) {
-      handleSearch && handleSearch(inputVal);
-    } else {
-      //setSearchTerm(inputVal);
-      debouncedFetchData(inputVal);
-    }
+    debouncedFetchData(inputValue);
   }
 
   return (
@@ -57,7 +47,7 @@ export function SearchBar({
       <input
         placeholder={placeholder ? t(placeholder) : ""}
         className={`w-auto rounded py-1.5 pl-8 shadow transition-all duration-200 ${className}`}
-        value={inputValue}
+        value={searchTerm}
         onChange={handleChange}
       />
     </div>

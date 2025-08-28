@@ -1,74 +1,86 @@
-import React from "react";
+import {
+  forwardRef,
+  HTMLAttributes,
+  TdHTMLAttributes,
+  ThHTMLAttributes,
+} from "react";
 
-const TableComponent = React.forwardRef<
+const TableComponent = forwardRef<
   HTMLTableElement,
-  React.HTMLAttributes<HTMLTableElement>
+  HTMLAttributes<HTMLTableElement>
 >(({ className, style, ...props }, ref) => (
-  <div className="scrollbar scrollbar-thumb-background scrollbar-track-foreground relative w-full border-collapse overflow-auto">
-    <table
-      ref={ref}
-      className={`min-h-[250px] w-full caption-bottom text-sm ${className}`}
-      style={style}
-      {...props}
-    />
+  <div className=" overflow-hidden rounded border shadow">
+    <div className="scrollbar-thin scrollbar-thumb-black/10 scrollbar-track-white  h-full min-h-[145px] overflow-auto">
+      <table
+        ref={ref}
+        className={` relative min-w-full text-sm ${className}`}
+        style={style}
+        {...props}
+      />
+    </div>
   </div>
 ));
 TableComponent.displayName = "TableComponent";
 
-const TableHeader = React.forwardRef<
+const TableHeader = forwardRef<
   HTMLTableSectionElement,
-  React.HTMLAttributes<HTMLTableSectionElement>
+  HTMLAttributes<HTMLTableSectionElement>
 >(({ className, style, ...props }, ref) => (
   <thead
     ref={ref}
-    className={`bg-border rounded font-bold text-black ${className}`}
+    className={`bg-border font-bold text-black ${className}`}
     style={style}
     {...props}
   />
 ));
 TableHeader.displayName = "TableHeader";
 
-const TableHead = React.forwardRef<
+const TableHead = forwardRef<
   HTMLTableCellElement,
-  React.ThHTMLAttributes<HTMLTableCellElement>
+  ThHTMLAttributes<HTMLTableCellElement>
 >(({ className, style, ...props }, ref) => (
-  <th ref={ref} className={` ${className}`} style={style} {...props} />
+  <th
+    ref={ref}
+    className={`p-2 text-start whitespace-nowrap ${className}`}
+    style={style}
+    {...props}
+  />
 ));
 TableHead.displayName = "TableHead";
 
-const TableBody = React.forwardRef<
+const TableBody = forwardRef<
   HTMLTableSectionElement,
-  React.HTMLAttributes<HTMLTableSectionElement>
+  HTMLAttributes<HTMLTableSectionElement>
 >(({ className, style, ...props }, ref) => (
   <tbody
     ref={ref}
-    className={`border-0 ${className}`}
+    className={`min-h-full ${className}`}
     style={style}
     {...props}
   />
 ));
 TableBody.displayName = "TableBody";
 
-const TableRow = React.forwardRef<
+const TableRow = forwardRef<
   HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement>
+  HTMLAttributes<HTMLTableRowElement>
 >(({ className, style, ...props }, ref) => (
   <tr
     ref={ref}
-    className={`border-b-border hover:bg-background/45 border-b text-black [&:last-child]:border-b-0 ${className}`}
+    className={`border-b-border border-b-[1px] text-black hover:bg-black/3 ${className}`}
     style={style}
     {...props}
   />
 ));
 TableRow.displayName = "TableRow";
 
-const TableCell = React.forwardRef<
+const TableCell = forwardRef<
   HTMLTableCellElement,
-  React.TdHTMLAttributes<HTMLTableCellElement>
+  TdHTMLAttributes<HTMLTableCellElement>
 >(({ className, style, ...props }, ref) => (
   <td
     ref={ref}
-    className={`py-2 text-center ${className}`}
+    className={`p-2 text-start whitespace-nowrap [&:first-child]:max-w-4 [&:last-child]:max-w-4 ${className}`}
     style={style}
     {...props}
   />

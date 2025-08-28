@@ -14,11 +14,12 @@ import {
 
 interface EditDeleteCellProps {
   id: string;
+  index: number;
   onDelete?: () => Promise<void> | void;
   editDisabled?: boolean;
 }
 
-export function EditDeleteCell({ id, onDelete }: EditDeleteCellProps) {
+export function EditDeleteCell({ id, index, onDelete }: EditDeleteCellProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -50,7 +51,7 @@ export function EditDeleteCell({ id, onDelete }: EditDeleteCellProps) {
     <>
       <ToggleMenu>
         <ToggleMenuTrigger
-          className="flex peer-checked:bg-black/10"
+          className="flex peer-checked:[&_.menu-icon-button]:bg-black/10"
           defaultMenuId={menuId}
         >
           <IconButton
@@ -61,7 +62,10 @@ export function EditDeleteCell({ id, onDelete }: EditDeleteCellProps) {
           />
         </ToggleMenuTrigger>
 
-        <ToggleMenuContent orientation="left" className="bottom-0">
+        <ToggleMenuContent
+          orientation="left"
+          className={index === 0 ? "top-0" : "bottom-0"}
+        >
           <ToggleMenuItem className="group flex gap-2" onClick={handleNavigate}>
             <Icon
               name={"ArrowRight"}

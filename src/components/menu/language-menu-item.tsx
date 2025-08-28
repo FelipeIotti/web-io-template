@@ -10,26 +10,20 @@ import {
   ToggleMenuItem,
   ToggleMenuTrigger,
 } from "../ui/toggle-menu";
+import { MenuItem } from "./menu-item";
 
 export function LanguageMenuItem() {
   const { locale, changeLocale } = useSettings();
 
   return (
     <ToggleMenu>
-      <ToggleMenuTrigger className="group px-2 py-3 peer-checked:bg-black/10 hover:bg-black/10">
-        <Icon
-          className="group-peer-checked:fill-text fill-text/50"
-          name="Translate"
-          size={18}
-        />
-        <Text className="opacity-50 group-peer-checked:font-bold group-peer-checked:opacity-100">
-          language
-        </Text>
+      <ToggleMenuTrigger className="peer-checked:bg-black/10 ">
+        <MenuItem icon={"Translate"} label={"language"} noNavigate />
       </ToggleMenuTrigger>
 
       <ToggleMenuContent orientation="right" className="bottom-0">
         <ToggleMenuHeader>
-          <Text>language</Text>
+          <Text className="font-bold">language</Text>
         </ToggleMenuHeader>
 
         {locales.map((loc, index) => (

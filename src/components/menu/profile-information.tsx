@@ -8,9 +8,11 @@ export function ProfileInformation() {
 
   return (
     <div className="flex w-full gap-2">
-      <ProfilePicture />
+      <div className="w-full">
+        <ProfilePicture />
+      </div>
 
-      <div className="flex w-full flex-col">
+      <div className="hidden w-[80%] flex-col sm:flex">
         <Text className="text-xs" noTranslate>
           {user.name}
         </Text>

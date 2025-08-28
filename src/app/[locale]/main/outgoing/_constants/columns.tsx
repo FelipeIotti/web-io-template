@@ -2,23 +2,19 @@
 
 import { DetailsModal } from "@/components/details-modal";
 import { ColumnConfig } from "@/components/ui/table";
+import { ActiveCell } from "@/components/ui/table/special-cells/active-cell";
 import { DetailsCell } from "@/components/ui/table/special-cells/details-cell";
 import { EditDeleteCell } from "@/components/ui/table/special-cells/edit-delete-cell";
 import { TextCell } from "@/components/ui/table/special-cells/text-cell";
+import { TypeCell } from "@/components/ui/table/special-cells/type-cell";
 import { UserDTO } from "@/shared/dtos/users/user-DTO";
 
 export function Columns(): ColumnConfig<UserDTO>[] {
   return [
     {
-      key: "1",
+      key: "id",
       name: "",
       noTranslateColumn: true,
-      columnStyle: {
-        maxWidth: "5%",
-      },
-      rowStyle: {
-        maxWidth: "5%",
-      },
       render: (entity) => (
         <DetailsCell
           modalContent={<DetailsModal title="client" entity={entity} />}
@@ -36,21 +32,22 @@ export function Columns(): ColumnConfig<UserDTO>[] {
       render: (entity) => <TextCell text={entity.email} />,
     },
     {
-      key: "users_count",
-      name: "count",
-      render: (entity) => <TextCell text={entity.name} />,
+      key: "user_type",
+      name: "user_type",
+      render: (entity) => <TypeCell type={entity.user_type} />,
     },
     {
-      key: "id",
+      key: "active",
+      name: "status",
+      render: (entity) => <ActiveCell active={entity.active} />,
+    },
+    {
+      key: "id-",
       name: "",
       noTranslateColumn: true,
-      columnStyle: {
-        maxWidth: "5%",
-      },
-      rowStyle: {
-        maxWidth: "5%",
-      },
-      render: (entity) => <EditDeleteCell id={entity.id} onDelete={() => {}} />,
+      render: (entity, index) => (
+        <EditDeleteCell id={entity.id} index={index} onDelete={() => {}} />
+      ),
     },
   ];
 }

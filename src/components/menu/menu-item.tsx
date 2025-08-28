@@ -6,56 +6,54 @@ import { Text } from "../ui/text";
 
 interface MenuItemProps {
   label: string;
-  icon: IconNameType;
-  path?: string;
+  icon: string;
+  noNavigate?: boolean;
 }
 
-const Item = ({
-  label,
+const ItemIcon = ({
   icon,
-  isSelected = false,
+  isSelected,
 }: {
-  label: string;
-  icon: IconNameType;
+  icon: string;
   isSelected?: boolean;
-}) => {
-  return (
-    <>
-      <Icon
-        className={isSelected ? "fill-text" : "fill-text/50"}
-        name={icon as IconNameType}
-        size={22}
-      />
+}) => (
+  <div className="menu-icon-wrapper rounded px-2 py-3 transition-colors duration-300">
+    <Icon
+      className={`${isSelected ? "fill-text" : "fill-text/50"}`}
+      name={icon as IconNameType}
+      size={22}
+    />
+  </div>
+);
+
+export function MenuItem({ label, icon, noNavigate = false }: MenuItemProps) {
+  const pathname = usePathname();
+  const isSelected = pathname.split("/").includes(label);
+
+  const baseClass =
+    "menu-item flex w-full items-center gap-1 pr-2 transition-all duration-300 rounded cursor-pointer hover:bg-black/10";
+
+  return noNavigate ? (
+    <div className={baseClass}>
+      <ItemIcon icon={icon} isSelected={isSelected} />
       <Text
-        className={`whitespace-nowrap  ${
+        className={`menu-text hidden transition-all duration-300 sm:flex ${
           isSelected ? "font-bold" : "opacity-50"
         }`}
       >
         {label}
       </Text>
-    </>
-  );
-};
-
-export function MenuItem({ label, icon }: MenuItemProps) {
-  const pathname = usePathname();
-
-  const isSelected = pathname.split("/").includes(label);
-
-  const baseClass =
-    "flex flex-nowrap items-center gap-3 px-2 py-3 transition-all duration-200 hover:bg-black/10 rounded cursor-pointer";
-
-  return (
-    <>
-      {label ? (
-        <Link href={`/main/${label}`} className={baseClass}>
-          <Item label={label} icon={icon} isSelected={isSelected} />
-        </Link>
-      ) : (
-        <div className={baseClass}>
-          <Item label={label} icon={icon} />
-        </div>
-      )}
-    </>
+    </div>
+  ) : (
+    <Link href={`/main/${label}`} className={baseClass}>
+      <ItemIcon icon={icon} isSelected={isSelected} />
+      <Text
+        className={`menu-text hidden transition-all duration-300 sm:flex ${
+          isSelected ? "font-bold" : "opacity-50"
+        }`}
+      >
+        {label}
+      </Text>
+    </Link>
   );
 }
