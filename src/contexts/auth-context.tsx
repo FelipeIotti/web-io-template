@@ -27,11 +27,7 @@ export const AuthContext = createContext<AuthContextDataProps>(
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const router = useRouter();
 
-  const [user, setUser] = useState<UserDTO>({
-    id: "id1",
-    name: "Felipe Iotti",
-    email: "felipeizago@hotmail.com",
-  } as UserDTO);
+  const [user, setUser] = useState<UserDTO>({} as UserDTO);
 
   async function updateUser(userData: UserDTO) {
     await cookiesUserSave(userData);

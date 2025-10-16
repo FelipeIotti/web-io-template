@@ -13,7 +13,7 @@ export function SignInForms() {
   const [{ errors }, handleSubmit, isPending] = useFormActionState(
     signInAction,
     () => {
-      router.refresh();
+      router.push("/");
     }
   );
 

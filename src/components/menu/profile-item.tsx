@@ -1,6 +1,6 @@
 "use client";
+import { useAuth } from "@/hooks/use-auth";
 import { useSettings } from "@/hooks/use-settings";
-import { Link } from "@/i18n/navigation";
 import { Icon } from "../ui/icon";
 import { Text } from "../ui/text";
 import {
@@ -15,6 +15,7 @@ import { ProfileInformation } from "./profile-information";
 
 export function ProfileItem() {
   const { theme, changeTheme } = useSettings();
+  const { signOut } = useAuth();
 
   return (
     <ToggleMenu className="z-300">
@@ -50,13 +51,14 @@ export function ProfileItem() {
         </div>
 
         <ToggleMenuFooter>
-          <Link href="/">
-            <ToggleMenuItem className="flex gap-2">
-              <Icon name="BoxArrowRight" size={16} className="fill-text" />
+          <ToggleMenuItem
+            className="flex gap-2"
+            onClick={async () => await signOut()}
+          >
+            <Icon name="BoxArrowRight" size={16} className="fill-text" />
 
-              <Text>exit</Text>
-            </ToggleMenuItem>
-          </Link>
+            <Text>exit</Text>
+          </ToggleMenuItem>
         </ToggleMenuFooter>
       </ToggleMenuContent>
     </ToggleMenu>

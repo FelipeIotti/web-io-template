@@ -1,6 +1,6 @@
 "use client";
 
-import React, { CSSProperties, ReactElement, useState } from "react";
+import React, { CSSProperties, ReactElement, useMemo, useState } from "react";
 
 import { Text } from "@/components/ui/text";
 import { SearchBar } from "../search-bar";
@@ -38,6 +38,7 @@ interface TableProps<T> {
   isLoading?: boolean;
   CustomFilter?: ReactElement;
   CustomLeftComponents?: ReactElement;
+  noPagination?: boolean;
 }
 
 export function Table<T>({
@@ -49,58 +50,41 @@ export function Table<T>({
   isLoading = false,
   CustomFilter,
   CustomLeftComponents,
+  noPagination = false,
 }: TableProps<T>) {
   // const { filtersSelected } = useFilter();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredData =
-    data && data.length > 0
-      ? data?.filter((item) =>
-          columns.some((column) => {
-            if (column.searchValue) {
-              return column
-                .searchValue(item)
-                ?.toLowerCase()
-                .includes(searchTerm?.toLowerCase());
-            }
+  const filteredData = useMemo(() => {
+    if (!data) return undefined;
 
-            const raw = item[column.key as keyof T];
-            return raw
-              ?.toString()
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase());
-          })
-        )
-      : // .filter((item) => {
-        //   if (!filtersTable) return true;
+    return data.filter((item) =>
+      columns.some((column) => {
+        if (column.searchValue) {
+          return column
+            .searchValue(item)
+            ?.toLowerCase()
+            ?.includes(searchTerm?.toLowerCase());
+        }
 
-        //   return (
-        //     Object.keys(filtersTable) as Array<keyof FilterTypesDTO>
-        //   ).every((key) => {
-        //     const selectedValue = filtersSelected[key];
-
-        //     if (selectedValue === undefined || selectedValue === null)
-        //       return true;
-
-        //     const itemValue = item[key as keyof T];
-
-        //     if (typeof selectedValue === "boolean") {
-        //       return itemValue === selectedValue;
-        //     }
-
-        //     return itemValue == selectedValue;
-        //   });
-        // })
-        undefined;
-
-  const paginatedData =
-    filteredData &&
-    filteredData.slice(
-      (currentPage - 1) * itemsPerPage,
-      currentPage * itemsPerPage
+        const raw = item[column.key as keyof T];
+        return raw
+          ?.toString()
+          ?.toLowerCase()
+          ?.includes(searchTerm?.toLowerCase());
+      })
     );
+  }, [data, columns, searchTerm]);
+
+  const paginatedData = useMemo(() => {
+    if (!filteredData) return undefined;
+    return filteredData.slice(
+      (currentPage - 1) * (noPagination ? 999 : itemsPerPage),
+      currentPage * (noPagination ? 999 : itemsPerPage)
+    );
+  }, [filteredData, currentPage, itemsPerPage, noPagination]);
 
   async function handleChangePage(page: number) {
     setCurrentPage(page);

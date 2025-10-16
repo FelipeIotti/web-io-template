@@ -1,6 +1,6 @@
 "use client";
 
-import * as Icons from "@/assets/icons";
+import * as Icons from "@/components/ui/icon/assets";
 
 export type IconNameType = keyof typeof Icons;
 
